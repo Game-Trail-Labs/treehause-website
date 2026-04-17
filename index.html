@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TreeHaus Woodworking</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="#" class="logo">
+        <span class="logo-icon">🌲</span> TreeHaus <span class="logo-accent">Woodworking</span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact" class="btn btn-nav">Get a Quote</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero" id="home">
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <h1>Handcrafted Wood,<br>Built to Last</h1>
+      <p>Custom furniture and woodworking — designed around your life, built with care.</p>
+      <div class="hero-buttons">
+        <a href="#gallery" class="btn btn-primary">See Our Work</a>
+        <a href="#contact" class="btn btn-outline">Contact Us</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- About -->
+  <section class="about" id="about">
+    <div class="container about-grid">
+      <div class="about-text">
+        <h2>The Story Behind the Grain</h2>
+        <p>At TreeHaus Woodworking, every piece starts with a conversation. We listen to what you need, select the right wood, and bring your vision to life with honest craftsmanship and attention to detail.</p>
+        <p>From dining tables that gather families to shelving that fits your space perfectly — we build things that matter.</p>
+      </div>
+      <div class="about-image">
+        <div class="placeholder-img">🪵</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="services" id="services">
+    <div class="container">
+      <h2>What We Build</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🪑</div>
+          <h3>Custom Furniture</h3>
+          <p>Tables, chairs, beds, desks — designed to your exact specifications and built from premium hardwoods.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🏠</div>
+          <h3>Built-Ins & Cabinetry</h3>
+          <p>Bookshelves, entertainment centers, and kitchen cabinetry crafted to fit your space seamlessly.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🔨</div>
+          <h3>Restoration</h3>
+          <p>Breathe new life into heirloom pieces with expert repair, refinishing, and restoration work.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <h2>Our Work</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item"><div class="placeholder-img">🖼️</div></div>
+        <div class="gallery-item"><div class="placeholder-img">🖼️</div></div>
+        <div class="gallery-item"><div class="placeholder-img">🖼️</div></div>
+        <div class="gallery-item"><div class="placeholder-img">🖼️</div></div>
+        <div class="gallery-item"><div class="placeholder-img">🖼️</div></div>
+        <div class="gallery-item"><div class="placeholder-img">🖼️</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <div class="container contact-grid">
+      <div class="contact-info">
+        <h2>Let's Build Something</h2>
+        <p>Have a project in mind? Tell us about it — we'd love to hear from you.</p>
+        <ul class="contact-details">
+          <li>📍 Your City, State</li>
+          <li>📞 (555) 123-4567</li>
+          <li>✉️ hello@treehauswoodworking.com</li>
+        </ul>
+      </div>
+      <form class="contact-form" onsubmit="event.preventDefault(); alert('Thanks! We\'ll be in touch.');">
+        <input type="text" placeholder="Name" required>
+        <input type="email" placeholder="Email" required>
+        <textarea placeholder="Tell us about your project..." rows="5" required></textarea>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <p>&copy; 2026 TreeHaus Woodworking. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
