@@ -3,124 +3,524 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TreeHaus Woodworking</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>TreeHaus Woodworking — Handcrafted Cutting &amp; Charcuterie Boards</title>
+  <meta name="description" content="Premium handcrafted cutting boards and charcuterie boards, made to order by TreeHaus Woodworking.">
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest" defer></script>
+
+  <!-- Snipcart -->
+  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.6.1/default/snipcart.css" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- Navigation -->
-  <nav class="navbar">
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar" id="navbar">
     <div class="container nav-container">
       <a href="#" class="logo">
-        <span class="logo-icon">🌲</span> TreeHaus <span class="logo-accent">Woodworking</span>
+        <svg class="logo-tree" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L6 10h3l-4 8h14l-4-8h3L12 2z"/><rect x="11" y="18" width="2" height="4"/></svg>
+        <span>TreeHaus</span>
       </a>
-      <button class="nav-toggle" aria-label="Toggle navigation">
+      <button class="nav-toggle" aria-label="Toggle navigation" id="navToggle">
         <span></span><span></span><span></span>
       </button>
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#craft">Our Craft</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#builder">Board Builder</a></li>
         <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#contact" class="btn btn-nav">Get a Quote</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li>
+          <button class="btn btn-nav snipcart-checkout">
+            <i data-lucide="shopping-bag" style="width:16px;height:16px"></i>
+            Cart (<span class="snipcart-items-count">0</span>)
+          </button>
+        </li>
       </ul>
     </div>
   </nav>
 
-  <!-- Hero -->
+  <!-- ========== HERO ========== -->
   <header class="hero" id="home">
-    <div class="hero-overlay"></div>
+    <div class="hero-bg">
+      <div class="hero-grain"></div>
+    </div>
     <div class="container hero-content">
-      <h1>Handcrafted Wood,<br>Built to Last</h1>
-      <p>Custom furniture and woodworking — designed around your life, built with care.</p>
+      <p class="hero-tag">Handcrafted in Small Batches</p>
+      <h1>Boards Worth<br><em>Gathering Around</em></h1>
+      <p class="hero-sub">Custom cutting boards &amp; charcuterie boards — crafted from premium hardwoods, designed to be the centerpiece of your kitchen and table.</p>
       <div class="hero-buttons">
-        <a href="#gallery" class="btn btn-primary">See Our Work</a>
-        <a href="#contact" class="btn btn-outline">Contact Us</a>
+        <a href="#products" class="btn btn-primary">Shop Boards</a>
+        <a href="#builder" class="btn btn-ghost">Build Your Own</a>
+      </div>
+      <div class="hero-scroll-hint">
+        <i data-lucide="chevron-down"></i>
       </div>
     </div>
   </header>
 
-  <!-- About -->
-  <section class="about" id="about">
-    <div class="container about-grid">
-      <div class="about-text">
-        <h2>The Story Behind the Grain</h2>
-        <p>At TreeHaus Woodworking, every piece starts with a conversation. We listen to what you need, select the right wood, and bring your vision to life with honest craftsmanship and attention to detail.</p>
-        <p>From dining tables that gather families to shelving that fits your space perfectly — we build things that matter.</p>
-      </div>
-      <div class="about-image">
-        <div class="placeholder-img">🪵</div>
-      </div>
+  <!-- ========== MARQUEE ========== -->
+  <div class="marquee-strip">
+    <div class="marquee-track">
+      <span>★ Handmade with Care</span>
+      <span>★ Premium Hardwoods</span>
+      <span>★ Food-Safe Finishes</span>
+      <span>★ Custom Engraving Available</span>
+      <span>★ Free Shipping Over $100</span>
+      <span>★ Handmade with Care</span>
+      <span>★ Premium Hardwoods</span>
+      <span>★ Food-Safe Finishes</span>
+      <span>★ Custom Engraving Available</span>
+      <span>★ Free Shipping Over $100</span>
     </div>
-  </section>
+  </div>
 
-  <!-- Services -->
-  <section class="services" id="services">
+  <!-- ========== THE CRAFT ========== -->
+  <section class="craft" id="craft">
     <div class="container">
-      <h2>What We Build</h2>
-      <div class="services-grid">
-        <div class="service-card">
-          <div class="service-icon">🪑</div>
-          <h3>Custom Furniture</h3>
-          <p>Tables, chairs, beds, desks — designed to your exact specifications and built from premium hardwoods.</p>
+      <div class="section-label">About the Maker</div>
+      <div class="craft-grid">
+        <div class="craft-text" data-animate="fade-up">
+          <h2>Every Board<br>Tells a Story</h2>
+          <p>I'm Danny — a woodworker, a perfectionist, and the guy who spends way too long picking the right piece of walnut. TreeHaus started in my garage with a table saw and a love for making things people actually use.</p>
+          <p>Every board is hand-selected, hand-cut, and finished with food-safe oils. No shortcuts, no particle board, no compromises. Just real wood, real craftsmanship, and something you'll keep for decades.</p>
+          <div class="craft-stats">
+            <div class="stat">
+              <span class="stat-num" data-count="200">0</span><span class="stat-plus">+</span>
+              <span class="stat-label">Boards Crafted</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num" data-count="15">0</span><span class="stat-plus">+</span>
+              <span class="stat-label">Wood Species</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num" data-count="5">0</span>
+              <span class="stat-label">Star Reviews</span>
+            </div>
+          </div>
         </div>
-        <div class="service-card">
-          <div class="service-icon">🏠</div>
-          <h3>Built-Ins & Cabinetry</h3>
-          <p>Bookshelves, entertainment centers, and kitchen cabinetry crafted to fit your space seamlessly.</p>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">🔨</div>
-          <h3>Restoration</h3>
-          <p>Breathe new life into heirloom pieces with expert repair, refinishing, and restoration work.</p>
+        <div class="craft-images" data-animate="fade-up" data-delay="0.2">
+          <div class="craft-img craft-img-1">
+            <div class="placeholder-img"><i data-lucide="axe" style="width:48px;height:48px;opacity:0.4"></i></div>
+          </div>
+          <div class="craft-img craft-img-2">
+            <div class="placeholder-img"><i data-lucide="trees" style="width:48px;height:48px;opacity:0.4"></i></div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Gallery -->
+  <!-- ========== PROCESS ========== -->
+  <section class="process">
+    <div class="container">
+      <div class="section-label">How It's Made</div>
+      <h2 class="section-heading" data-animate="fade-up">From Raw Timber to Your Table</h2>
+      <div class="process-steps">
+        <div class="process-step" data-animate="fade-up" data-delay="0">
+          <div class="step-num">01</div>
+          <div class="step-icon"><i data-lucide="search"></i></div>
+          <h3>Select</h3>
+          <p>Hand-picking premium hardwoods — walnut, maple, cherry, and exotic species — for grain, color, and character.</p>
+        </div>
+        <div class="process-step" data-animate="fade-up" data-delay="0.1">
+          <div class="step-num">02</div>
+          <div class="step-icon"><i data-lucide="ruler"></i></div>
+          <h3>Design</h3>
+          <p>Planning the layout, grain direction, and pattern — whether it's end-grain, edge-grain, or a custom shape.</p>
+        </div>
+        <div class="process-step" data-animate="fade-up" data-delay="0.2">
+          <div class="step-num">03</div>
+          <div class="step-icon"><i data-lucide="hammer"></i></div>
+          <h3>Craft</h3>
+          <p>Precision cutting, gluing, clamping, and sanding — each board goes through multiple rounds by hand.</p>
+        </div>
+        <div class="process-step" data-animate="fade-up" data-delay="0.3">
+          <div class="step-num">04</div>
+          <div class="step-icon"><i data-lucide="droplets"></i></div>
+          <h3>Finish</h3>
+          <p>Multiple coats of food-safe mineral oil and beeswax, buffed to a smooth, beautiful sheen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PRODUCTS ========== -->
+  <section class="products" id="products">
+    <div class="container">
+      <div class="section-label">The Collection</div>
+      <h2 class="section-heading" data-animate="fade-up">Our Boards</h2>
+      <p class="section-sub" data-animate="fade-up">Each one unique. Each one built to last.</p>
+
+      <div class="product-filters" data-animate="fade-up">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="cutting">Cutting Boards</button>
+        <button class="filter-btn" data-filter="charcuterie">Charcuterie Boards</button>
+        <button class="filter-btn" data-filter="custom">Custom</button>
+      </div>
+
+      <div class="product-grid">
+        <div class="product-card" data-category="cutting" data-animate="fade-up">
+          <div class="product-img">
+            <div class="placeholder-img"><i data-lucide="grid-3x3" style="width:40px;height:40px;opacity:0.3"></i></div>
+            <span class="product-badge">Best Seller</span>
+          </div>
+          <div class="product-info">
+            <h3>The Classic End-Grain</h3>
+            <p class="product-wood">Walnut &amp; Maple</p>
+            <div class="product-footer">
+              <span class="product-price">$145</span>
+              <button class="btn btn-sm snipcart-add-item"
+                data-item-id="classic-end-grain"
+                data-item-name="The Classic End-Grain"
+                data-item-price="145.00"
+                data-item-url="/index.html"
+                data-item-description="Walnut & Maple end-grain cutting board"
+                data-item-image="">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="cutting" data-animate="fade-up" data-delay="0.1">
+          <div class="product-img">
+            <div class="placeholder-img"><i data-lucide="layout-grid" style="width:40px;height:40px;opacity:0.3"></i></div>
+          </div>
+          <div class="product-info">
+            <h3>The Butcher Block</h3>
+            <p class="product-wood">Hard Maple</p>
+            <div class="product-footer">
+              <span class="product-price">$175</span>
+              <button class="btn btn-sm snipcart-add-item"
+                data-item-id="butcher-block"
+                data-item-name="The Butcher Block"
+                data-item-price="175.00"
+                data-item-url="/index.html"
+                data-item-description="Hard Maple butcher block cutting board"
+                data-item-image="">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="charcuterie" data-animate="fade-up" data-delay="0.2">
+          <div class="product-img">
+            <div class="placeholder-img"><i data-lucide="wine" style="width:40px;height:40px;opacity:0.3"></i></div>
+            <span class="product-badge">New</span>
+          </div>
+          <div class="product-info">
+            <h3>The Entertainer</h3>
+            <p class="product-wood">Cherry &amp; Walnut</p>
+            <div class="product-footer">
+              <span class="product-price">$120</span>
+              <button class="btn btn-sm snipcart-add-item"
+                data-item-id="the-entertainer"
+                data-item-name="The Entertainer"
+                data-item-price="120.00"
+                data-item-url="/index.html"
+                data-item-description="Cherry & Walnut charcuterie board"
+                data-item-image="">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="charcuterie" data-animate="fade-up" data-delay="0.3">
+          <div class="product-img">
+            <div class="placeholder-img"><i data-lucide="utensils-crossed" style="width:40px;height:40px;opacity:0.3"></i></div>
+          </div>
+          <div class="product-info">
+            <h3>The Grazer</h3>
+            <p class="product-wood">Live-Edge Walnut</p>
+            <div class="product-footer">
+              <span class="product-price">$195</span>
+              <button class="btn btn-sm snipcart-add-item"
+                data-item-id="the-grazer"
+                data-item-name="The Grazer"
+                data-item-price="195.00"
+                data-item-url="/index.html"
+                data-item-description="Live-edge Walnut charcuterie board"
+                data-item-image="">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="cutting" data-animate="fade-up" data-delay="0.4">
+          <div class="product-img">
+            <div class="placeholder-img"><i data-lucide="chevrons-right" style="width:40px;height:40px;opacity:0.3"></i></div>
+          </div>
+          <div class="product-info">
+            <h3>The Stripe</h3>
+            <p class="product-wood">Padauk, Maple &amp; Walnut</p>
+            <div class="product-footer">
+              <span class="product-price">$160</span>
+              <button class="btn btn-sm snipcart-add-item"
+                data-item-id="the-stripe"
+                data-item-name="The Stripe"
+                data-item-price="160.00"
+                data-item-url="/index.html"
+                data-item-description="Padauk, Maple & Walnut edge-grain cutting board"
+                data-item-image="">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="custom" data-animate="fade-up" data-delay="0.5">
+          <div class="product-img">
+            <div class="placeholder-img"><i data-lucide="pen-tool" style="width:40px;height:40px;opacity:0.3"></i></div>
+          </div>
+          <div class="product-info">
+            <h3>Custom Order</h3>
+            <p class="product-wood">Your Vision, Our Hands</p>
+            <div class="product-footer">
+              <span class="product-price">From $100</span>
+              <a href="#builder" class="btn btn-sm">Configure →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== BOARD BUILDER ========== -->
+  <section class="builder" id="builder">
+    <div class="container">
+      <div class="section-label">Customize</div>
+      <h2 class="section-heading" data-animate="fade-up">Build Your Board</h2>
+      <p class="section-sub" data-animate="fade-up">Design your perfect board — pick the wood, size, style, and add personal engraving.</p>
+
+      <div class="builder-grid" data-animate="fade-up">
+        <div class="builder-options">
+          <div class="builder-group">
+            <label class="builder-label">Board Type</label>
+            <div class="option-pills" data-option="type">
+              <button class="pill active" data-value="cutting" data-price="0">Cutting Board</button>
+              <button class="pill" data-value="charcuterie" data-price="0">Charcuterie Board</button>
+            </div>
+          </div>
+          <div class="builder-group">
+            <label class="builder-label">Primary Wood</label>
+            <div class="option-pills" data-option="wood">
+              <button class="pill active" data-value="walnut" data-price="0"><span class="wood-swatch" style="background:#4a3728"></span> Walnut</button>
+              <button class="pill" data-value="maple" data-price="0"><span class="wood-swatch" style="background:#d4b896"></span> Maple</button>
+              <button class="pill" data-value="cherry" data-price="10"><span class="wood-swatch" style="background:#8b4513"></span> Cherry (+$10)</button>
+              <button class="pill" data-value="padauk" data-price="25"><span class="wood-swatch" style="background:#9b2d2d"></span> Padauk (+$25)</button>
+            </div>
+          </div>
+          <div class="builder-group">
+            <label class="builder-label">Size</label>
+            <div class="option-pills" data-option="size">
+              <button class="pill" data-value="small" data-price="0">Small <span class="pill-detail">10×8"</span></button>
+              <button class="pill active" data-value="medium" data-price="30">Medium <span class="pill-detail">14×10"</span></button>
+              <button class="pill" data-value="large" data-price="60">Large <span class="pill-detail">18×12"</span></button>
+              <button class="pill" data-value="xl" data-price="100">XL <span class="pill-detail">24×16"</span></button>
+            </div>
+          </div>
+          <div class="builder-group">
+            <label class="builder-label">Grain Pattern</label>
+            <div class="option-pills" data-option="grain">
+              <button class="pill active" data-value="edge" data-price="0">Edge Grain</button>
+              <button class="pill" data-value="end" data-price="40">End Grain (+$40)</button>
+            </div>
+          </div>
+          <div class="builder-group">
+            <label class="builder-label">Add Engraving?</label>
+            <div class="option-pills" data-option="engraving">
+              <button class="pill active" data-value="none" data-price="0">None</button>
+              <button class="pill" data-value="initials" data-price="15">Initials (+$15)</button>
+              <button class="pill" data-value="custom" data-price="30">Custom Text (+$30)</button>
+            </div>
+          </div>
+          <div class="builder-group engraving-input" id="engravingGroup" style="display:none">
+            <label class="builder-label">Engraving Text</label>
+            <input type="text" class="builder-text-input" id="engravingText" placeholder="Enter text…" maxlength="30">
+          </div>
+          <div class="builder-group">
+            <label class="builder-label">Juice Groove</label>
+            <div class="option-pills" data-option="groove">
+              <button class="pill active" data-value="no" data-price="0">No</button>
+              <button class="pill" data-value="yes" data-price="15">Yes (+$15)</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="builder-preview">
+          <div class="preview-card">
+            <div class="preview-visual" id="boardPreview">
+              <div class="preview-board">
+                <div class="board-surface" id="boardSurface"></div>
+              </div>
+            </div>
+            <div class="preview-summary">
+              <h3>Your Custom Board</h3>
+              <ul class="preview-specs" id="previewSpecs"></ul>
+              <div class="preview-price">
+                <span class="price-label">Total</span>
+                <span class="price-amount" id="builderPrice">$130</span>
+              </div>
+              <button class="btn btn-primary btn-full snipcart-add-item"
+                id="builderAddToCart"
+                data-item-id="custom-board"
+                data-item-name="Custom Board"
+                data-item-price="130.00"
+                data-item-url="/index.html"
+                data-item-description="Custom board"
+                data-item-image="">
+                Add Custom Board to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== GALLERY ========== -->
   <section class="gallery" id="gallery">
     <div class="container">
-      <h2>Our Work</h2>
+      <div class="section-label">Showcase</div>
+      <h2 class="section-heading" data-animate="fade-up">The Gallery</h2>
+      <p class="section-sub" data-animate="fade-up">Close-up grain, lifestyle shots, and happy customers.</p>
       <div class="gallery-grid">
-        <div class="gallery-item"><div class="placeholder-img">🖼️</div></div>
-        <div class="gallery-item"><div class="placeholder-img">🖼️</div></div>
-        <div class="gallery-item"><div class="placeholder-img">🖼️</div></div>
-        <div class="gallery-item"><div class="placeholder-img">🖼️</div></div>
-        <div class="gallery-item"><div class="placeholder-img">🖼️</div></div>
-        <div class="gallery-item"><div class="placeholder-img">🖼️</div></div>
+        <div class="gallery-item gallery-wide" data-animate="fade-up"><div class="placeholder-img"><i data-lucide="image" style="width:40px;height:40px;opacity:0.3"></i></div></div>
+        <div class="gallery-item" data-animate="fade-up" data-delay="0.1"><div class="placeholder-img"><i data-lucide="image" style="width:40px;height:40px;opacity:0.3"></i></div></div>
+        <div class="gallery-item" data-animate="fade-up" data-delay="0.2"><div class="placeholder-img"><i data-lucide="image" style="width:40px;height:40px;opacity:0.3"></i></div></div>
+        <div class="gallery-item gallery-tall" data-animate="fade-up" data-delay="0.1"><div class="placeholder-img"><i data-lucide="image" style="width:40px;height:40px;opacity:0.3"></i></div></div>
+        <div class="gallery-item" data-animate="fade-up" data-delay="0.2"><div class="placeholder-img"><i data-lucide="image" style="width:40px;height:40px;opacity:0.3"></i></div></div>
+        <div class="gallery-item gallery-wide" data-animate="fade-up" data-delay="0.3"><div class="placeholder-img"><i data-lucide="image" style="width:40px;height:40px;opacity:0.3"></i></div></div>
       </div>
     </div>
   </section>
 
-  <!-- Contact -->
+  <!-- ========== TESTIMONIALS ========== -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-label">Love Letters</div>
+      <h2 class="section-heading" data-animate="fade-up">What People Say</h2>
+      <div class="testimonial-track" data-animate="fade-up">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"This cutting board is a work of art. I almost don't want to use it — but it's too perfect not to. Danny is a true craftsman."</p>
+          <div class="testimonial-author"><strong>Sarah M.</strong><span>Custom End-Grain Board</span></div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"Bought the charcuterie board as a gift. My friend literally cried. It's gorgeous and the engraving was perfect."</p>
+          <div class="testimonial-author"><strong>Mike R.</strong><span>The Entertainer + Engraving</span></div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"Third board I've ordered from TreeHaus. The quality is insane for the price. These are heirloom pieces."</p>
+          <div class="testimonial-author"><strong>Jessica L.</strong><span>Repeat Customer</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FAQ ========== -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <div class="section-label">Questions</div>
+      <h2 class="section-heading" data-animate="fade-up">Frequently Asked</h2>
+      <div class="faq-list" data-animate="fade-up">
+        <div class="faq-item">
+          <button class="faq-question"><span>How do I care for my board?</span><i data-lucide="plus"></i></button>
+          <div class="faq-answer"><p>Wash with warm water and mild soap after use — never soak or put in the dishwasher. Apply food-safe mineral oil monthly (we include a small bottle with every order). With proper care, your board will last a lifetime.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question"><span>What's the turnaround time?</span><i data-lucide="plus"></i></button>
+          <div class="faq-answer"><p>Standard boards ship in 1–2 weeks. Custom orders typically take 2–4 weeks depending on complexity. Rush orders available — just reach out.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question"><span>Do you ship nationwide?</span><i data-lucide="plus"></i></button>
+          <div class="faq-answer"><p>Yes! We ship anywhere in the continental US. Free shipping on orders over $100. Boards are carefully packaged to arrive in perfect condition.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question"><span>What's the difference between end-grain and edge-grain?</span><i data-lucide="plus"></i></button>
+          <div class="faq-answer"><p><strong>Edge-grain</strong> boards show long parallel lines — they're beautiful, durable, and great for everyday use. <strong>End-grain</strong> boards show a checkerboard pattern of wood fibers — they're gentler on knives, self-healing, and considered the premium choice by chefs.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question"><span>Can I request a fully custom board?</span><i data-lucide="plus"></i></button>
+          <div class="faq-answer"><p>Absolutely. Use the Board Builder to start configuring, or reach out through the contact form with your idea. Custom shapes, wood combos, inlays, handles — if it can be done in wood, we'll make it happen.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTACT ========== -->
   <section class="contact" id="contact">
-    <div class="container contact-grid">
-      <div class="contact-info">
-        <h2>Let's Build Something</h2>
-        <p>Have a project in mind? Tell us about it — we'd love to hear from you.</p>
-        <ul class="contact-details">
-          <li>📍 Your City, State</li>
-          <li>📞 (555) 123-4567</li>
-          <li>✉️ hello@treehauswoodworking.com</li>
-        </ul>
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info" data-animate="fade-up">
+          <div class="section-label">Get in Touch</div>
+          <h2>Let's Make<br>Something Beautiful</h2>
+          <p>Have a custom project in mind? Want a board for a wedding, anniversary, or housewarming? Drop us a line.</p>
+          <ul class="contact-details">
+            <li><i data-lucide="map-pin"></i> Based in the USA</li>
+            <li><i data-lucide="mail"></i> hello@treehauswoodworking.com</li>
+            <li><i data-lucide="instagram"></i> @treehauswoodworking</li>
+          </ul>
+        </div>
+        <form class="contact-form" data-animate="fade-up" data-delay="0.15" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="email" name="email" placeholder="Email Address" required>
+          <select name="subject">
+            <option value="" disabled selected>What's this about?</option>
+            <option value="custom-order">Custom Order</option>
+            <option value="wholesale">Wholesale Inquiry</option>
+            <option value="question">General Question</option>
+            <option value="other">Other</option>
+          </select>
+          <textarea name="message" placeholder="Tell us about your project…" rows="5" required></textarea>
+          <button type="submit" class="btn btn-primary">Send Message <i data-lucide="arrow-right" style="width:16px;height:16px;margin-left:8px"></i></button>
+        </form>
       </div>
-      <form class="contact-form" onsubmit="event.preventDefault(); alert('Thanks! We\'ll be in touch.');">
-        <input type="text" placeholder="Name" required>
-        <input type="email" placeholder="Email" required>
-        <textarea placeholder="Tell us about your project..." rows="5" required></textarea>
-        <button type="submit" class="btn btn-primary">Send Message</button>
-      </form>
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- ========== FOOTER ========== -->
   <footer class="footer">
-    <div class="container footer-content">
-      <p>&copy; 2026 TreeHaus Woodworking. All rights reserved.</p>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="logo">
+            <svg class="logo-tree" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L6 10h3l-4 8h14l-4-8h3L12 2z"/><rect x="11" y="18" width="2" height="4"/></svg>
+            <span>TreeHaus</span>
+          </a>
+          <p>Handcrafted cutting boards &amp; charcuterie boards. Made with care, built to last.</p>
+        </div>
+        <div class="footer-links-col">
+          <h4>Shop</h4>
+          <ul><li><a href="#products">All Boards</a></li><li><a href="#builder">Board Builder</a></li><li><a href="#products">Gift Ideas</a></li></ul>
+        </div>
+        <div class="footer-links-col">
+          <h4>Info</h4>
+          <ul><li><a href="#craft">Our Story</a></li><li><a href="#faq">FAQ</a></li><li><a href="#faq">Shipping</a></li><li><a href="#faq">Care Guide</a></li></ul>
+        </div>
+        <div class="footer-links-col">
+          <h4>Connect</h4>
+          <ul><li><a href="#contact">Contact</a></li><li><a href="#">Instagram</a></li><li><a href="#">Facebook</a></li></ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 TreeHaus Woodworking. All rights reserved.</p>
+      </div>
     </div>
   </footer>
+
+  <!-- Snipcart (test mode — replace key for production) -->
+  <div hidden id="snipcart" data-api-key="YOUR_SNIPCART_PUBLIC_TEST_API_KEY" data-config-modal-style="side"></div>
+  <script src="https://cdn.snipcart.com/themes/v3.6.1/default/snipcart.js"></script>
 
   <script src="script.js"></script>
 </body>
