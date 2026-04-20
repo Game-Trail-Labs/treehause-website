@@ -13,13 +13,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // ── Page Loader ──
   const loader = document.getElementById('pageLoader');
-  window.addEventListener('load', () => {
+  const hideLoader = () => {
     setTimeout(() => {
       loader?.classList.add('hidden');
-      // Trigger hero animations after loader fades
       animateHero();
     }, 800);
-  });
+  };
+  if (document.readyState === 'complete') {
+    hideLoader();
+  } else {
+    window.addEventListener('load', hideLoader);
+  }
 
   // ── Hero staggered animation ──
   function animateHero() {
