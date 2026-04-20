@@ -56,10 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('[data-lightbox]').forEach(item => {
     item.addEventListener('click', () => {
-      // Copy the placeholder styling for now (later: real images)
-      const src = item.querySelector('.placeholder-img');
-      if (src && lightboxImg) {
-        lightboxImg.style.background = getComputedStyle(src).background;
+      const imgSrc = item.dataset.lightbox;
+      if (imgSrc && lightboxImg) {
+        lightboxImg.style.backgroundImage = `url('${imgSrc}')`;
       }
       lightbox?.classList.add('active');
       document.body.style.overflow = 'hidden';

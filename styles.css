@@ -237,21 +237,29 @@ img { max-width: 100%; display: block; }
 .stat-label { font-size: 0.78rem; color: var(--text-dim); margin-top: 4px; letter-spacing: 0.5px; }
 
 .craft-images { position: relative; }
+.craft-img img,
 .craft-img .placeholder-img {
-  border-radius: var(--radius-lg); display: flex;
-  align-items: center; justify-content: center;
+  border-radius: var(--radius-lg);
+  display: block; width: 100%; object-fit: cover;
   color: var(--text-dim);
 }
+.craft-img .placeholder-img { display: flex; align-items: center; justify-content: center; }
+.craft-img-1 {
+  width: 75%;
+}
+.craft-img-1 img,
 .craft-img-1 .placeholder-img {
+  aspect-ratio: 4/5;
   background: linear-gradient(135deg, var(--walnut), #2a1f16);
-  aspect-ratio: 4/5; width: 75%;
 }
 .craft-img-2 {
   position: absolute; bottom: -30px; right: -10px; width: 55%;
 }
+.craft-img-2 img,
 .craft-img-2 .placeholder-img {
+  aspect-ratio: 1;
   background: linear-gradient(135deg, #3a2a1e, var(--walnut));
-  aspect-ratio: 1; border: 4px solid var(--bg);
+  border: 4px solid var(--bg);
 }
 
 /* ===== Process ===== */
@@ -319,6 +327,11 @@ img { max-width: 100%; display: block; }
 .product-img {
   position: relative; overflow: hidden;
 }
+.product-img img {
+  width: 100%; aspect-ratio: 4/3; object-fit: cover;
+  transition: transform 0.6s;
+}
+.product-card:hover .product-img img { transform: scale(1.05); }
 .product-img .placeholder-img {
   aspect-ratio: 4/3;
   background: linear-gradient(135deg, var(--bg-subtle), var(--walnut));
@@ -433,8 +446,13 @@ img { max-width: 100%; display: block; }
   gap: 16px;
 }
 .gallery-item {
-  border-radius: var(--radius); overflow: hidden;
+  border-radius: var(--radius); overflow: hidden; position: relative;
 }
+.gallery-item img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.6s;
+}
+.gallery-item:hover img { transform: scale(1.06); }
 .gallery-item .placeholder-img {
   width: 100%; height: 100%;
   background: linear-gradient(135deg, var(--bg-subtle), var(--walnut));
@@ -667,8 +685,8 @@ img { max-width: 100%; display: block; }
 }
 .lightbox-img {
   width: 70vw; height: 60vh;
-  background: linear-gradient(135deg, var(--bg-subtle), var(--walnut));
-  display: flex; align-items: center; justify-content: center;
+  background-size: cover; background-position: center;
+  background-color: var(--bg-subtle);
   border-radius: var(--radius-lg);
   transform: scale(0.9); transition: transform 0.4s ease;
 }
