@@ -1,0 +1,13 @@
+{
+  "images": [
+    { "image": "images/classic-endgrain.jpg", "alt": "Classic end-grain board", "size": "wide" },
+    { "image": "images/brickwork.jpg", "alt": "Brickwork pattern board", "size": "normal" },
+    { "image": "images/cherry-stripe.jpg", "alt": "Cherry & walnut striped board", "size": "normal" },
+    { "image": "images/checker-tray.jpg", "alt": "Checkerboard tray with handles", "size": "tall" },
+    { "image": "images/walnut-stripe.jpg", "alt": "Walnut board with maple accents", "size": "normal" },
+    { "image": "images/walnut-tray.jpg", "alt": "Walnut serving tray", "size": "wide" },
+    { "image": "images/walnut-double-stripe.jpg", "alt": "Walnut double-stripe board", "size": "normal" },
+    { "image": "images/endgrain-checker.jpg", "alt": "End-grain checkerboard", "size": "normal" },
+    { "image": "images/walnut-tray-2.jpg", "alt": "Walnut tray second angle", "size": "normal" }
+  ]
+}

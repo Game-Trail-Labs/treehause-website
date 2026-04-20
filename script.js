@@ -2,7 +2,11 @@
    TreeHaus Woodworking — Script
    ================================================================ */
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+
+  // ── Render products & gallery from JSON first ──
+  await renderProducts();
+  await renderGallery();
 
   // ── Init Lucide icons ──
   if (window.lucide) lucide.createIcons();
@@ -278,3 +282,84 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 });
+
+/* ================================================================
+   Dynamic rendering — products & gallery from JSON
+   ================================================================ */
+
+const SITE_URL = 'https://treehauswoodworking.com';
+
+function escapeHtml(str) {
+  return String(str ?? '').replace(/[&<>"']/g, c => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[c]));
+}
+
+async function renderProducts() {
+  const grid = document.getElementById('productGrid');
+  if (!grid) return;
+  try {
+    const res = await fetch('products.json', { cache: 'no-cache' });
+    const data = await res.json();
+    const products = data.products || [];
+
+    grid.innerHTML = products.map((p, i) => {
+      const delay = (i * 0.1).toFixed(1);
+      const badge = p.badge ? `<span class="product-badge">${escapeHtml(p.badge)}</span>` : '';
+      const priceLabel = p.priceLabel || `$${p.price}`;
+
+      // Custom-order card links to builder instead of add-to-cart
+      const action = p.linkToBuilder
+        ? `<a href="#builder" class="btn btn-sm">Configure →</a>`
+        : `<button class="btn btn-sm snipcart-add-item"
+            data-item-id="${escapeHtml(p.id)}"
+            data-item-name="${escapeHtml(p.name)}"
+            data-item-price="${Number(p.price).toFixed(2)}"
+            data-item-url="${SITE_URL}/index.html"
+            data-item-description="${escapeHtml(p.description || '')}"
+            data-item-image="${SITE_URL}/${escapeHtml(p.image)}">Add to Cart</button>`;
+
+      return `
+        <div class="product-card" data-category="${escapeHtml(p.category)}" data-animate="fade-up" data-delay="${delay}">
+          <div class="product-img">
+            <img src="${escapeHtml(p.image)}" alt="${escapeHtml(p.name)}" loading="lazy">
+            ${badge}
+          </div>
+          <div class="product-info">
+            <h3>${escapeHtml(p.name)}</h3>
+            <p class="product-wood">${escapeHtml(p.wood)}</p>
+            <div class="product-footer">
+              <span class="product-price">${escapeHtml(priceLabel)}</span>
+              ${action}
+            </div>
+          </div>
+        </div>`;
+    }).join('');
+  } catch (err) {
+    console.error('Failed to load products.json', err);
+    grid.innerHTML = '<p style="color:#888">Products are being updated — check back soon.</p>';
+  }
+}
+
+async function renderGallery() {
+  const grid = document.getElementById('galleryGrid');
+  if (!grid) return;
+  try {
+    const res = await fetch('gallery.json', { cache: 'no-cache' });
+    const data = await res.json();
+    const images = data.images || [];
+
+    grid.innerHTML = images.map((img, i) => {
+      const delay = ((i % 3) * 0.1).toFixed(1);
+      const sizeClass = img.size === 'wide' ? ' gallery-wide'
+                      : img.size === 'tall' ? ' gallery-tall' : '';
+      return `
+        <div class="gallery-item${sizeClass}" data-animate="fade-up" data-delay="${delay}" data-lightbox="${escapeHtml(img.image)}">
+          <img src="${escapeHtml(img.image)}" alt="${escapeHtml(img.alt || '')}" loading="lazy">
+          <span class="gallery-zoom"><i data-lucide="maximize-2"></i></span>
+        </div>`;
+    }).join('');
+  } catch (err) {
+    console.error('Failed to load gallery.json', err);
+  }
+}

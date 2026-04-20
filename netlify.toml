@@ -1,0 +1,18 @@
+# Netlify build configuration for TreeHaus Woodworking
+# This is a plain static site — no build step needed.
+
+[build]
+  publish = "."
+
+# Clean URLs (optional, nice-to-have)
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+
+# Cache JSON lightly so CMS edits appear fast
+[[headers]]
+  for = "/*.json"
+  [headers.values]
+    Cache-Control = "public, max-age=60"

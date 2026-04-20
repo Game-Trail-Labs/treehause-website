@@ -1,0 +1,76 @@
+{
+  "products": [
+    {
+      "id": "classic-end-grain",
+      "name": "The Classic End-Grain",
+      "category": "cutting",
+      "wood": "Walnut & Maple",
+      "price": 145,
+      "image": "images/classic-endgrain.jpg",
+      "badge": "Best Seller",
+      "description": "Walnut & Maple end-grain cutting board"
+    },
+    {
+      "id": "brickwork",
+      "name": "The Brickwork",
+      "category": "cutting",
+      "wood": "Walnut & Maple End-Grain",
+      "price": 225,
+      "image": "images/brickwork.jpg",
+      "badge": "Premium",
+      "description": "Walnut & Maple end-grain brick-pattern cutting board with juice groove"
+    },
+    {
+      "id": "the-entertainer",
+      "name": "The Entertainer",
+      "category": "cutting",
+      "wood": "Cherry & Walnut",
+      "price": 120,
+      "image": "images/cherry-stripe.jpg",
+      "badge": "New",
+      "description": "Cherry & Walnut striped cutting board with juice groove"
+    },
+    {
+      "id": "serving-tray",
+      "name": "The Serving Tray",
+      "category": "charcuterie",
+      "wood": "Walnut & Maple with Brass Handles",
+      "price": 175,
+      "image": "images/walnut-tray.jpg",
+      "badge": "",
+      "description": "Walnut & Maple striped charcuterie serving tray with brass handles"
+    },
+    {
+      "id": "checker-tray",
+      "name": "The Checker Tray",
+      "category": "charcuterie",
+      "wood": "Walnut, Maple & Cherry End-Grain",
+      "price": 210,
+      "image": "images/checker-tray.jpg",
+      "badge": "",
+      "description": "End-grain checkerboard charcuterie tray with brass handles"
+    },
+    {
+      "id": "the-stripe",
+      "name": "The Stripe",
+      "category": "cutting",
+      "wood": "Walnut with Maple Accents",
+      "price": 145,
+      "image": "images/walnut-stripe.jpg",
+      "badge": "",
+      "description": "Walnut cutting board with Maple accent stripes and juice groove"
+    },
+    {
+      "id": "custom-order",
+      "name": "Custom Order",
+      "category": "custom",
+      "wood": "Your Vision, Our Hands",
+      "price": 100,
+      "image": "images/endgrain-checker.jpg",
+      "badge": "",
+      "description": "Fully custom board — use the Board Builder or contact us",
+      "priceLabel": "From $100",
+      "linkToBuilder": true
+    }
+  ]
+}

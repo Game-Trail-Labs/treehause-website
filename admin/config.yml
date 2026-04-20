@@ -1,0 +1,76 @@
+# Decap CMS configuration for TreeHaus Woodworking
+# Danny edits this through the UI — but you can tweak field labels here.
+
+backend:
+  name: git-gateway
+  branch: main
+
+# Where uploaded photos go
+media_folder: "images"
+public_folder: "/images"
+
+# Friendly site link inside the CMS
+site_url: https://treehauswoodworking.com
+display_url: https://treehauswoodworking.com
+logo_url: https://treehauswoodworking.com/images/classic-endgrain.jpg
+
+collections:
+  # ── PRODUCTS ──────────────────────────────────────────────
+  - name: "products"
+    label: "Products"
+    label_singular: "Product"
+    file: "products.json"
+    editor:
+      preview: false
+    files:
+      - name: "products"
+        label: "All Products"
+        file: "products.json"
+        fields:
+          - name: "products"
+            label: "Products"
+            label_singular: "Product"
+            widget: "list"
+            summary: "{{fields.name}} — ${{fields.price}}"
+            fields:
+              - { name: "id", label: "Product ID (lowercase, no spaces)", widget: "string", hint: "Example: classic-end-grain. Do NOT change this after publishing." }
+              - { name: "name", label: "Product Name", widget: "string" }
+              - name: "category"
+                label: "Category"
+                widget: "select"
+                options:
+                  - { label: "Cutting Board", value: "cutting" }
+                  - { label: "Charcuterie Board", value: "charcuterie" }
+                  - { label: "Custom", value: "custom" }
+              - { name: "wood", label: "Wood / Material", widget: "string" }
+              - { name: "price", label: "Price (USD, number only)", widget: "number", value_type: "int", min: 0 }
+              - { name: "image", label: "Photo", widget: "image" }
+              - { name: "badge", label: "Badge (optional)", widget: "string", required: false, hint: "e.g. 'Best Seller', 'New', 'Premium' — leave blank for no badge" }
+              - { name: "description", label: "Short Description", widget: "text" }
+              - { name: "priceLabel", label: "Custom Price Label (optional)", widget: "string", required: false, hint: "Overrides the price display. e.g. 'From $100'" }
+              - { name: "linkToBuilder", label: "Link to Board Builder instead of Add to Cart?", widget: "boolean", default: false, required: false }
+
+  # ── GALLERY ──────────────────────────────────────────────
+  - name: "gallery"
+    label: "Gallery"
+    files:
+      - name: "gallery"
+        label: "Gallery Photos"
+        file: "gallery.json"
+        fields:
+          - name: "images"
+            label: "Photos"
+            label_singular: "Photo"
+            widget: "list"
+            summary: "{{fields.alt}}"
+            fields:
+              - { name: "image", label: "Photo", widget: "image" }
+              - { name: "alt", label: "Description (for screen readers)", widget: "string" }
+              - name: "size"
+                label: "Tile Size"
+                widget: "select"
+                default: "normal"
+                options:
+                  - { label: "Normal", value: "normal" }
+                  - { label: "Wide (2 columns)", value: "wide" }
+                  - { label: "Tall (2 rows)", value: "tall" }
