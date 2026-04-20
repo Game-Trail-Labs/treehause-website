@@ -7,6 +7,72 @@ document.addEventListener('DOMContentLoaded', () => {
   // ── Init Lucide icons ──
   if (window.lucide) lucide.createIcons();
 
+  // ── Page Loader ──
+  const loader = document.getElementById('pageLoader');
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      loader?.classList.add('hidden');
+      // Trigger hero animations after loader fades
+      animateHero();
+    }, 800);
+  });
+
+  // ── Hero staggered animation ──
+  function animateHero() {
+    if (!window.gsap) return;
+    document.querySelectorAll('.hero-animate').forEach(el => {
+      const delay = parseFloat(el.dataset.heroDelay) || 0;
+      gsap.to(el, {
+        opacity: 1, y: 0, duration: 1, delay,
+        ease: 'power3.out'
+      });
+    });
+  }
+
+  // ── Cursor Glow (desktop only) ──
+  const cursorGlow = document.getElementById('cursorGlow');
+  if (cursorGlow && window.matchMedia('(pointer: fine)').matches) {
+    document.addEventListener('mousemove', e => {
+      cursorGlow.style.left = e.clientX + 'px';
+      cursorGlow.style.top = e.clientY + 'px';
+      cursorGlow.classList.add('visible');
+    });
+    document.addEventListener('mouseleave', () => cursorGlow.classList.remove('visible'));
+  }
+
+  // ── Back to Top ──
+  const backToTop = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    backToTop?.classList.toggle('visible', window.scrollY > 600);
+  });
+  backToTop?.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // ── Lightbox ──
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = lightbox?.querySelector('.lightbox-img');
+  const lightboxClose = lightbox?.querySelector('.lightbox-close');
+
+  document.querySelectorAll('[data-lightbox]').forEach(item => {
+    item.addEventListener('click', () => {
+      // Copy the placeholder styling for now (later: real images)
+      const src = item.querySelector('.placeholder-img');
+      if (src && lightboxImg) {
+        lightboxImg.style.background = getComputedStyle(src).background;
+      }
+      lightbox?.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+  lightboxClose?.addEventListener('click', closeLightbox);
+  lightbox?.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  function closeLightbox() {
+    lightbox?.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
   // ── Mobile Nav ──
   const toggle = document.getElementById('navToggle');
   const navLinks = document.getElementById('navLinks');

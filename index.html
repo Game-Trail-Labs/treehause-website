@@ -6,6 +6,9 @@
   <title>TreeHaus Woodworking — Handcrafted Cutting &amp; Charcuterie Boards</title>
   <meta name="description" content="Premium handcrafted cutting boards and charcuterie boards, made to order by TreeHaus Woodworking.">
 
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c8956c' stroke-width='1.5'%3E%3Cpath d='M12 2L6 10h3l-4 8h14l-4-8h3L12 2z'/%3E%3Crect x='11' y='18' width='2' height='4'/%3E%3C/svg%3E">
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,6 +28,30 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+  <!-- ========== PAGE LOADER ========== -->
+  <div class="loader" id="pageLoader">
+    <div class="loader-inner">
+      <svg class="loader-logo" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2L6 10h3l-4 8h14l-4-8h3L12 2z"/><rect x="11" y="18" width="2" height="4"/></svg>
+      <div class="loader-bar"><div class="loader-progress"></div></div>
+    </div>
+  </div>
+
+  <!-- ========== CURSOR GLOW (desktop only) ========== -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- ========== BACK TO TOP ========== -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i data-lucide="arrow-up"></i>
+  </button>
+
+  <!-- ========== LIGHTBOX ========== -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" aria-label="Close"><i data-lucide="x"></i></button>
+    <div class="lightbox-content">
+      <div class="lightbox-img"></div>
+    </div>
+  </div>
 
   <!-- ========== NAVBAR ========== -->
   <nav class="navbar" id="navbar">
@@ -59,14 +86,14 @@
       <div class="hero-grain"></div>
     </div>
     <div class="container hero-content">
-      <p class="hero-tag">Handcrafted in Small Batches</p>
-      <h1>Boards Worth<br><em>Gathering Around</em></h1>
-      <p class="hero-sub">Custom cutting boards &amp; charcuterie boards — crafted from premium hardwoods, designed to be the centerpiece of your kitchen and table.</p>
-      <div class="hero-buttons">
+      <p class="hero-tag hero-animate" data-hero-delay="0">Handcrafted in Small Batches</p>
+      <h1 class="hero-animate" data-hero-delay="0.15">Boards Worth<br><em>Gathering Around</em></h1>
+      <p class="hero-sub hero-animate" data-hero-delay="0.35">Custom cutting boards &amp; charcuterie boards — crafted from premium hardwoods, designed to be the centerpiece of your kitchen and table.</p>
+      <div class="hero-buttons hero-animate" data-hero-delay="0.5">
         <a href="#products" class="btn btn-primary">Shop Boards</a>
         <a href="#builder" class="btn btn-ghost">Build Your Own</a>
       </div>
-      <div class="hero-scroll-hint">
+      <div class="hero-scroll-hint hero-animate" data-hero-delay="0.8">
         <i data-lucide="chevron-down"></i>
       </div>
     </div>
@@ -87,6 +114,24 @@
       <span>★ Free Shipping Over $100</span>
     </div>
   </div>
+
+  <!-- ========== SOCIAL PROOF ========== -->
+  <section class="social-proof">
+    <div class="container">
+      <p class="social-proof-label">Trusted by hundreds of home chefs, gift-givers &amp; hosts</p>
+      <div class="social-proof-logos">
+        <div class="proof-item"><i data-lucide="chef-hat"></i><span>Home Chefs</span></div>
+        <div class="proof-divider"></div>
+        <div class="proof-item"><i data-lucide="gift"></i><span>Wedding Gifts</span></div>
+        <div class="proof-divider"></div>
+        <div class="proof-item"><i data-lucide="utensils"></i><span>Local Restaurants</span></div>
+        <div class="proof-divider"></div>
+        <div class="proof-item"><i data-lucide="users"></i><span>Small Businesses</span></div>
+        <div class="proof-divider"></div>
+        <div class="proof-item"><i data-lucide="heart"></i><span>Happy Customers</span></div>
+      </div>
+    </div>
+  </section>
 
   <!-- ========== THE CRAFT ========== -->
   <section class="craft" id="craft">
@@ -392,12 +437,12 @@
       <h2 class="section-heading" data-animate="fade-up">The Gallery</h2>
       <p class="section-sub" data-animate="fade-up">Close-up grain, lifestyle shots, and happy customers.</p>
       <div class="gallery-grid">
-        <div class="gallery-item gallery-wide" data-animate="fade-up"><div class="placeholder-img"><i data-lucide="image" style="width:40px;height:40px;opacity:0.3"></i></div></div>
-        <div class="gallery-item" data-animate="fade-up" data-delay="0.1"><div class="placeholder-img"><i data-lucide="image" style="width:40px;height:40px;opacity:0.3"></i></div></div>
-        <div class="gallery-item" data-animate="fade-up" data-delay="0.2"><div class="placeholder-img"><i data-lucide="image" style="width:40px;height:40px;opacity:0.3"></i></div></div>
-        <div class="gallery-item gallery-tall" data-animate="fade-up" data-delay="0.1"><div class="placeholder-img"><i data-lucide="image" style="width:40px;height:40px;opacity:0.3"></i></div></div>
-        <div class="gallery-item" data-animate="fade-up" data-delay="0.2"><div class="placeholder-img"><i data-lucide="image" style="width:40px;height:40px;opacity:0.3"></i></div></div>
-        <div class="gallery-item gallery-wide" data-animate="fade-up" data-delay="0.3"><div class="placeholder-img"><i data-lucide="image" style="width:40px;height:40px;opacity:0.3"></i></div></div>
+        <div class="gallery-item gallery-wide" data-animate="fade-up" data-lightbox><div class="placeholder-img"><i data-lucide="image" style="width:40px;height:40px;opacity:0.3"></i><span class="gallery-zoom"><i data-lucide="maximize-2"></i></span></div></div>
+        <div class="gallery-item" data-animate="fade-up" data-delay="0.1" data-lightbox><div class="placeholder-img"><i data-lucide="image" style="width:40px;height:40px;opacity:0.3"></i><span class="gallery-zoom"><i data-lucide="maximize-2"></i></span></div></div>
+        <div class="gallery-item" data-animate="fade-up" data-delay="0.2" data-lightbox><div class="placeholder-img"><i data-lucide="image" style="width:40px;height:40px;opacity:0.3"></i><span class="gallery-zoom"><i data-lucide="maximize-2"></i></span></div></div>
+        <div class="gallery-item gallery-tall" data-animate="fade-up" data-delay="0.1" data-lightbox><div class="placeholder-img"><i data-lucide="image" style="width:40px;height:40px;opacity:0.3"></i><span class="gallery-zoom"><i data-lucide="maximize-2"></i></span></div></div>
+        <div class="gallery-item" data-animate="fade-up" data-delay="0.2" data-lightbox><div class="placeholder-img"><i data-lucide="image" style="width:40px;height:40px;opacity:0.3"></i><span class="gallery-zoom"><i data-lucide="maximize-2"></i></span></div></div>
+        <div class="gallery-item gallery-wide" data-animate="fade-up" data-delay="0.3" data-lightbox><div class="placeholder-img"><i data-lucide="image" style="width:40px;height:40px;opacity:0.3"></i><span class="gallery-zoom"><i data-lucide="maximize-2"></i></span></div></div>
       </div>
     </div>
   </section>
