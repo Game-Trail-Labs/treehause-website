@@ -5,7 +5,7 @@
       "name": "The Classic End-Grain",
       "category": "cutting",
       "wood": "Walnut & Maple",
-      "price": 145,
+      "price": 200,
       "image": "images/classic-endgrain.jpg",
       "badge": "Best Seller",
       "description": "Walnut & Maple end-grain cutting board"
@@ -61,16 +61,16 @@
       "description": "Walnut cutting board with Maple accent stripes and juice groove"
     },
     {
-      "id": "custom-order",
-      "name": "Custom Order",
-      "category": "custom",
-      "wood": "Your Vision, Our Hands",
-      "price": 100,
-      "image": "images/endgrain-checker.jpg",
       "badge": "",
-      "description": "Fully custom board — use the Board Builder or contact us",
+      "linkToBuilder": true,
+      "price": 100,
+      "name": "Custom Order",
       "priceLabel": "From $100",
-      "linkToBuilder": true
+      "wood": "Your Vision, Our Hands",
+      "id": "custom-order",
+      "image": "images/endgrain-checker.jpg",
+      "description": "Fully custom board — use the Board Builder or contact us",
+      "category": "custom"
     }
   ]
 }
