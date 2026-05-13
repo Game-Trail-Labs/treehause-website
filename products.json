@@ -6,7 +6,7 @@
       "category": "cutting",
       "wood": "Walnut & Maple",
       "price": 210,
-      "image": "images/classic-endgrain.jpg",
+      "image": "/images/IMG_3474.PNG",
       "badge": "Best Seller",
       "description": "Walnut & Maple end-grain cutting board"
     },
@@ -19,16 +19,6 @@
       "image": "images/brickwork.jpg",
       "badge": "Premium",
       "description": "Walnut & Maple end-grain brick-pattern cutting board with juice groove"
-    },
-    {
-      "id": "the-entertainer",
-      "name": "The Entertainer",
-      "category": "cutting",
-      "wood": "Cherry & Walnut",
-      "price": 120,
-      "image": "images/cherry-stripe.jpg",
-      "badge": "New",
-      "description": "Cherry & Walnut striped cutting board with juice groove"
     },
     {
       "id": "serving-tray",
@@ -51,14 +41,15 @@
       "description": "End-grain checkerboard charcuterie tray with brass handles"
     },
     {
-      "id": "the-stripe",
-      "name": "The Stripe",
-      "category": "cutting",
-      "wood": "Walnut with Maple Accents",
-      "price": 145,
-      "image": "images/walnut-stripe.jpg",
       "badge": "",
-      "description": "Walnut cutting board with Maple accent stripes and juice groove"
+      "price": 80,
+      "name": "Walnut Edge Grain",
+      "priceLabel": "",
+      "wood": "Walnut with Cherry Accents",
+      "id": "the-stripe",
+      "image": "/images/IMG_3509.JPG",
+      "description": "Walnut cutting board with Maple accent stripes and juice groove",
+      "category": "cutting"
     },
     {
       "badge": "",
@@ -71,6 +62,16 @@
       "image": "/images/walnut-with-maple-accent.png",
       "description": "Fully custom board — use the Board Builder or contact us",
       "category": "custom"
+    },
+    {
+      "linkToBuilder": false,
+      "id": "the-stripe",
+      "name": "Cherry Edge Grain",
+      "category": "cutting",
+      "wood": "Cherry with Walnut Accents",
+      "price": 80,
+      "image": "/images/IMG_3512.JPG",
+      "description": "Walnut cutting board with Maple accent stripes and juice groove"
     }
   ]
 }
