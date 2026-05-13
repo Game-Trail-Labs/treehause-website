@@ -16,7 +16,7 @@
       "category": "cutting",
       "wood": "Walnut & Maple End-Grain",
       "price": 225,
-      "image": "images/brickwork.jpg",
+      "image": "/images/brickwork.png",
       "badge": "Premium",
       "description": "Walnut & Maple end-grain brick-pattern cutting board with juice groove"
     },
@@ -26,7 +26,7 @@
       "category": "charcuterie",
       "wood": "Walnut & Maple with Brass Handles",
       "price": 120,
-      "image": "images/walnut-tray.jpg",
+      "image": "/images/game-day-tray.png",
       "badge": "",
       "description": "Walnut & Maple striped charcuterie serving tray with brass handles"
     },
@@ -36,7 +36,7 @@
       "category": "charcuterie",
       "wood": "Walnut, Maple & Cherry End-Grain",
       "price": 210,
-      "image": "images/checker-tray.jpg",
+      "image": "/images/checkered-tray.png",
       "badge": "",
       "description": "End-grain checkerboard charcuterie tray with brass handles"
     },
@@ -47,7 +47,7 @@
       "priceLabel": "",
       "wood": "Walnut with Cherry Accents",
       "id": "the-stripe",
-      "image": "/images/IMG_3509.JPG",
+      "image": "/images/walnut-with-cherry-accents.png",
       "description": "Walnut cutting board with Maple accent stripes and juice groove",
       "category": "cutting"
     },
@@ -70,7 +70,7 @@
       "category": "cutting",
       "wood": "Cherry with Walnut Accents",
       "price": 80,
-      "image": "/images/IMG_3512.JPG",
+      "image": "/images/cherry-with-walnut-accents.png",
       "description": "Walnut cutting board with Maple accent stripes and juice groove"
     }
   ]
