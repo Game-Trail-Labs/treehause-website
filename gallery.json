@@ -1,7 +1,7 @@
 {
   "images": [
     {
-      "image": "images/classic-endgrain.jpg",
+      "image": "/images/IMG_3474.PNG",
       "alt": "Classic end-grain board",
       "size": "wide"
     },
@@ -11,38 +11,28 @@
       "size": "normal"
     },
     {
-      "image": "images/cherry-stripe.jpg",
+      "image": "/images/IMG_3512.JPG",
       "alt": "Cherry & walnut striped board",
       "size": "normal"
     },
     {
-      "image": "images/checker-tray.jpg",
+      "image": "/images/IMG_3341.JPG",
       "alt": "Checkerboard tray with handles",
       "size": "tall"
     },
     {
-      "image": "images/walnut-stripe.jpg",
+      "image": "/images/walnut-with-maple-accent.png",
       "alt": "Walnut board with maple accents",
       "size": "normal"
     },
     {
       "image": "images/walnut-tray.jpg",
-      "alt": "Walnut serving tray",
+      "alt": "Game Day Serving Tray",
       "size": "wide"
     },
     {
       "image": "images/walnut-double-stripe.jpg",
       "alt": "Walnut double-stripe board",
-      "size": "normal"
-    },
-    {
-      "image": "/images/walnut-with-maple-accent.png",
-      "alt": "End-grain checkerboard",
-      "size": "normal"
-    },
-    {
-      "image": "images/walnut-tray-2.jpg",
-      "alt": "Walnut tray second angle",
       "size": "normal"
     }
   ]
