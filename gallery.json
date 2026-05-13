@@ -6,17 +6,17 @@
       "size": "wide"
     },
     {
-      "image": "images/brickwork.jpg",
+      "image": "/images/brickwork.png",
       "alt": "Brickwork pattern board",
       "size": "normal"
     },
     {
-      "image": "/images/IMG_3512.JPG",
+      "image": "/images/cherry-with-walnut-accents.png",
       "alt": "Cherry & walnut striped board",
       "size": "normal"
     },
     {
-      "image": "/images/IMG_3341.JPG",
+      "image": "/images/checkered-tray.png",
       "alt": "Checkerboard tray with handles",
       "size": "tall"
     },
@@ -26,12 +26,12 @@
       "size": "normal"
     },
     {
-      "image": "images/walnut-tray.jpg",
+      "image": "/images/game-day-tray.png",
       "alt": "Game Day Serving Tray",
       "size": "wide"
     },
     {
-      "image": "images/walnut-double-stripe.jpg",
+      "image": "/images/walnut-with-cherry-accents.png",
       "alt": "Walnut double-stripe board",
       "size": "normal"
     }
