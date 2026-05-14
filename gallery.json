@@ -34,6 +34,11 @@
       "image": "/images/walnut-with-cherry-accents.png",
       "alt": "Walnut double-stripe board",
       "size": "normal"
+    },
+    {
+      "size": "normal",
+      "image": "/images/engraved.png",
+      "alt": "Custom Engraved Cutting Board"
     }
   ]
 }
