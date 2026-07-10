@@ -232,6 +232,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     cartBtn.dataset.itemDescription = desc;
     cartBtn.dataset.itemName = `Custom ${builderState.type === 'cutting' ? 'Cutting' : 'Charcuterie'} Board`;
 
+    // Unique ID per configuration so Snipcart treats different custom
+    // boards as separate cart lines instead of merging quantities and
+    // losing the description of whichever config was added second.
+    const idSlug = [
+      'custom', builderState.type, builderState.wood, builderState.size,
+      builderState.grain, builderState.engraving, builderState.groove,
+      builderState.engraving !== 'none' ? (engText || 'text').replace(/\s+/g, '-').toLowerCase() : ''
+    ].filter(Boolean).join('-');
+    cartBtn.dataset.itemId = idSlug;
+
     // Update specs list
     const specs = document.getElementById('previewSpecs');
     specs.innerHTML = `
