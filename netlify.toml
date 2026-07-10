@@ -1,7 +1,11 @@
 # Netlify build configuration for TreeHaus Woodworking
-# This is a plain static site — no build step needed.
+# Static site + a small prerender step (scripts/prerender.js) that bakes
+# products.json/gallery.json into index.html at build time, so Snipcart's
+# server-side order-validation crawler sees real prices/IDs instead of an
+# empty JS-rendered <div>. See scripts/prerender.js for details.
 
 [build]
+  command = "node scripts/prerender.js"
   publish = "."
 
 # Clean URLs (optional, nice-to-have)
