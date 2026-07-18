@@ -133,6 +133,8 @@ img { max-width: 100%; display: block; }
   display: flex; align-items: center; gap: 8px;
 }
 .logo-tree { color: var(--accent); }
+.logo-mark { height: 28px; width: auto; display: block; }
+.logo-mark-sm { height: 22px; }
 .nav-links {
   list-style: none; display: flex; align-items: center; gap: 28px;
 }
