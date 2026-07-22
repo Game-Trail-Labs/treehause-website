@@ -39,6 +39,21 @@
       "size": "normal",
       "image": "/images/engraved.png",
       "alt": "Custom Engraved Cutting Board"
+    },
+    {
+      "size": "normal",
+      "image": "/images/custom-coasters1.png",
+      "alt": "Custom Coasters"
+    },
+    {
+      "size": "normal",
+      "image": "/images/maple-coasters-1.png",
+      "alt": "Maple Coasters"
+    },
+    {
+      "size": "normal",
+      "image": "/images/chatgpt-image-jul-22-2026-10_29_38-am.png",
+      "alt": "Small Cutting Board"
     }
   ]
 }
