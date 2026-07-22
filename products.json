@@ -72,6 +72,47 @@
       "price": 80,
       "image": "/images/cherry-with-walnut-accents.png",
       "description": "Walnut cutting board with Maple accent stripes and juice groove"
+    },
+    {
+      "linkToBuilder": false,
+      "id": "face-grain-stripe",
+      "name": "Small Walnut Face Grain",
+      "category": "cutting",
+      "wood": "Maple, Walnut, Cherry",
+      "price": 65,
+      "image": "/images/chatgpt-image-jul-22-2026-10_29_38-am.png",
+      "description": "Walnut cutting board with Maple and Cherry Accents"
+    },
+    {
+      "linkToBuilder": false,
+      "id": "face-grain-small",
+      "name": "Small Walnut Face Grain with Maple",
+      "category": "cutting",
+      "wood": "Walnut. Maple",
+      "price": 65,
+      "image": "/images/chatgpt-image-jul-22-2026-10_35_42-am.png",
+      "description": "Walnut cutting board with Maple Accents"
+    },
+    {
+      "linkToBuilder": false,
+      "price": 15,
+      "name": "Maple Coasters",
+      "priceLabel": "40",
+      "wood": "Maple",
+      "id": "custom-coasters",
+      "image": "/images/maple-coasters-1.png",
+      "description": "4 Maple Coasters with Custom Engraving",
+      "category": "custom"
+    },
+    {
+      "linkToBuilder": false,
+      "id": "custom-coasters",
+      "name": "Custom Coasters",
+      "category": "custom",
+      "wood": "Walnut, Maple",
+      "price": 40,
+      "image": "/images/custom-coasters1.png",
+      "description": "4 Walnut/Maple Coasters with Custom Engraving"
     }
   ]
 }
