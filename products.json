@@ -97,7 +97,7 @@
       "linkToBuilder": false,
       "price": 15,
       "name": "Maple Coasters",
-      "priceLabel": "40",
+      "priceLabel": "",
       "wood": "Maple",
       "id": "custom-coasters",
       "image": "/images/maple-coasters-1.png",
