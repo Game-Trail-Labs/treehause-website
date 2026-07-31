@@ -304,7 +304,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 const SITE_URL = 'https://treehauswoodworking.com';
 
 function escapeHtml(str) {
-  return String(str ?? '').replace(/[&<>"']/g, c => ({
+  return String(str ?? '').replace(/[&<>\"']/g, c => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
   }[c]));
 }
@@ -377,3 +377,76 @@ async function renderGallery() {
     console.error('Failed to load gallery.json', err);
   }
 }
+
+
+// ── Snipcart checkout helpers: add/remove engraving fee and show pickup helper ──
+// Adds an order-level "Engraving" fee when the engraving checkbox is selected
+// and shows a helper note next to Local Pickup. Assumes the Snipcart fields were
+// added to the snipcart container in index.html.
+
+document.addEventListener('snipcart.ready', () => {
+  const attachHandlers = () => {
+    // Engraving checkbox (order-level)
+    const engravingLabel = Array.from(document.querySelectorAll('label'))
+      .find(l => /Engraving \(\+\$20\)/i.test(l.textContent || '') || /Add custom engraving/i.test(l.textContent || ''));
+
+    if (engravingLabel) {
+      const checkbox = engravingLabel.querySelector('input[type="checkbox"]');
+      if (checkbox && !checkbox._engravingHandlerAttached) {
+        checkbox._engravingHandlerAttached = true;
+        checkbox.addEventListener('change', async () => {
+          try {
+            // Get current cart to avoid adding duplicates
+            const cart = await Snipcart.api.cart.retrieve();
+            const hasEngraving = (cart.items || []).some(i => i.id === 'engraving-fee');
+
+            if (checkbox.checked) {
+              if (!hasEngraving) {
+                await Snipcart.api.items.add({
+                  id: 'engraving-fee',
+                  name: 'Engraving',
+                  price: 20.00,
+                  url: window.location.href,
+                  quantity: 1
+                });
+                console.log('Engraving fee added');
+              }
+            } else {
+              // remove engraving-fee items if present
+              const engravingItems = (cart.items || []).filter(i => i.id === 'engraving-fee');
+              for (const it of engravingItems) {
+                const removeId = it.rowId || it.uniqueId || it.id;
+                try { await Snipcart.api.items.remove(removeId); } catch (e) { console.warn('Failed to remove engraving item', e); }
+              }
+              console.log('Engraving fee removed');
+            }
+          } catch (err) {
+            console.warn('Error toggling engraving fee', err);
+          }
+        });
+      }
+    }
+
+    // Local Pickup helper note
+    const pickupLabel = Array.from(document.querySelectorAll('label'))
+      .find(l => /Local Pickup/i.test(l.textContent || ''));
+    if (pickupLabel && !document.getElementById('localPickupHelper')) {
+      const helper = document.createElement('div');
+      helper.id = 'localPickupHelper';
+      helper.style.marginTop = '8px';
+      helper.style.fontSize = '13px';
+      helper.style.color = '#444';
+      helper.textContent = 'Note: selecting Local Pickup will indicate pickup to the shop. To waive shipping automatically, configure a Snipcart shipping rule that uses this custom field.';
+      pickupLabel.parentElement.appendChild(helper);
+    }
+  };
+
+  // Retry a few times while Snipcart renders the checkout DOM
+  let tries = 0;
+  const waitAndAttach = () => {
+    tries += 1;
+    attachHandlers();
+    if (tries < 8) setTimeout(waitAndAttach, 400);
+  };
+  waitAndAttach();
+});
