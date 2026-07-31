@@ -12,7 +12,7 @@
     },
     {
       "id": "brickwork",
-      "name": "The Brickwork - 12\" x 20\"",
+      "name": "The Brickwork - 13\" x 20\"",
       "category": "cutting",
       "wood": "Walnut & Maple End-Grain",
       "price": 225,
@@ -43,7 +43,7 @@
     {
       "badge": "",
       "price": 80,
-      "name": "Walnut Edge Grain",
+      "name": "Walnut Edge Grain - 12\" x 18\"",
       "priceLabel": "",
       "wood": "Walnut with Cherry Accents",
       "id": "the-stripe",
