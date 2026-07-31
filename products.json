@@ -2,17 +2,17 @@
   "products": [
     {
       "id": "classic-end-grain",
-      "name": "The Classic End-Grain",
+      "name": "The Classic End-Grain - 10\" x 16\"",
       "category": "cutting",
       "wood": "Walnut & Maple",
-      "price": 210,
+      "price": 180,
       "image": "/images/IMG_3474.PNG",
       "badge": "Best Seller",
       "description": "Walnut & Maple end-grain cutting board"
     },
     {
       "id": "brickwork",
-      "name": "The Brickwork",
+      "name": "The Brickwork - 12\" x 20\"",
       "category": "cutting",
       "wood": "Walnut & Maple End-Grain",
       "price": 225,
@@ -22,7 +22,7 @@
     },
     {
       "id": "serving-tray",
-      "name": "The Game-Day Tray",
+      "name": "The Game-Day Tray - 12\" x 20\"",
       "category": "charcuterie",
       "wood": "Walnut & Maple with Brass Handles",
       "price": 120,
@@ -32,7 +32,7 @@
     },
     {
       "id": "checker-tray",
-      "name": "The Checker Tray",
+      "name": "The Checker Tray - 10\" x 18\"",
       "category": "charcuterie",
       "wood": "Walnut, Maple & Cherry End-Grain",
       "price": 100,
@@ -66,7 +66,7 @@
     {
       "linkToBuilder": false,
       "id": "the-stripe",
-      "name": "Cherry Edge Grain",
+      "name": "Cherry Edge Grain 12\" x 18\"",
       "category": "cutting",
       "wood": "Cherry with Walnut Accents",
       "price": 80,
@@ -76,7 +76,7 @@
     {
       "linkToBuilder": false,
       "id": "face-grain-stripe",
-      "name": "Small Walnut Face Grain",
+      "name": "Small Walnut Face Grain - 10\" x 14\"",
       "category": "cutting",
       "wood": "Maple, Walnut, Cherry",
       "price": 65,
@@ -86,7 +86,7 @@
     {
       "linkToBuilder": false,
       "id": "face-grain-small",
-      "name": "Small Walnut Face Grain with Maple",
+      "name": "Small Walnut Face Grain with Maple - 10\" x 14\"",
       "category": "cutting",
       "wood": "Walnut. Maple",
       "price": 65,
@@ -96,7 +96,7 @@
     {
       "linkToBuilder": false,
       "price": 15,
-      "name": "Maple Coasters",
+      "name": "Maple Coasters - 4\" x 4\"",
       "priceLabel": "",
       "wood": "Maple",
       "id": "custom-coasters",
