@@ -1,5 +1,5 @@
-Triggering Netlify rebuild
+Triggering Netlify rebuild (2)
 
-This file was added to force a new deployment on Netlify. Remove after deploy completes.
+This file update forces a new deployment on Netlify. Remove after deploy completes.
 
 Committed by Copilot to trigger build.
