@@ -216,7 +216,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
   function updateBuilderPreview() {
-    const total = BASE_PRICE + Object.values(optionPrices).reduce((a, b) => a + b, 0);
+    // Force engraving price to $20 whenever engraving != none
+    const engravingPrice = builderState.engraving !== 'none' ? 20 : 0;
+
+    const total = BASE_PRICE + Object.values(optionPrices).reduce((a, b) => a + b, 0) - (optionPrices.engraving || 0) + engravingPrice;
 
     // Update price display
     document.getElementById('builderPrice').textContent = `$${total}`;
@@ -249,7 +252,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       <li><span>Wood</span><span>${builderState.wood.charAt(0).toUpperCase() + builderState.wood.slice(1)}</span></li>
       <li><span>Size</span><span>${sizeMap[builderState.size].label}</span></li>
       <li><span>Grain</span><span>${builderState.grain === 'edge' ? 'Edge Grain' : 'End Grain'}</span></li>
-      ${builderState.engraving !== 'none' ? `<li><span>Engraving</span><span>${builderState.engraving === 'initials' ? 'Initials' : 'Custom Text'}</span></li>` : ''}
+      ${builderState.engraving !== 'none' ? `<li><span>Engraving</span><span>Yes</span></li>` : ''}
       ${builderState.groove === 'yes' ? '<li><span>Juice Groove</span><span>Yes</span></li>' : ''}
     `;
 
@@ -322,16 +325,26 @@ async function renderProducts() {
       const badge = p.badge ? `<span class="product-badge">${escapeHtml(p.badge)}</span>` : '';
       const priceLabel = p.priceLabel || `$${p.price}`;
 
+      // Engraving controls (checkbox + optional text input)
+      const engravingControls = `
+        <div class="product-engraving">
+          <label class="engrave-label"><input type="checkbox" class="product-engrave-checkbox"> Engrave (+$20)</label>
+          <input type="text" class="product-engrave-text" placeholder="Engraving text (optional)" maxlength="60" style="display:none;margin-top:6px;width:100%;padding:6px;border:1px solid #ddd;border-radius:6px">
+        </div>`;
+
       // Custom-order card links to builder instead of add-to-cart
       const action = p.linkToBuilder
         ? `<a href="#builder" class="btn btn-sm">Configure →</a>`
-        : `<button class="btn btn-sm snipcart-add-item"
-            data-item-id="${escapeHtml(p.id)}"
-            data-item-name="${escapeHtml(p.name)}"
-            data-item-price="${Number(p.price).toFixed(2)}"
-            data-item-url="${SITE_URL}/index.html"
-            data-item-description="${escapeHtml(p.description || '')}"
-            data-item-image="${SITE_URL}/${escapeHtml(p.image)}">Add to Cart</button>`;
+        : `<div class="product-actions">
+             ${engravingControls}
+             <button class="btn btn-sm snipcart-add-item"
+               data-item-id="${escapeHtml(p.id)}"
+               data-item-name="${escapeHtml(p.name)}"
+               data-item-price="${Number(p.price).toFixed(2)}"
+               data-item-url="${SITE_URL}/index.html"
+               data-item-description="${escapeHtml(p.description || '')}"
+               data-item-image="${SITE_URL}/${escapeHtml(p.image)}">Add to Cart</button>
+           </div>`;
 
       return `
         <div class="product-card" data-category="${escapeHtml(p.category)}" data-animate="fade-up" data-delay="${delay}">
@@ -349,6 +362,72 @@ async function renderProducts() {
           </div>
         </div>`;
     }).join('');
+
+    // After rendering, wire up engraving UI & Add-to-cart interception
+    grid.querySelectorAll('.product-card').forEach(card => {
+      const cb = card.querySelector('.product-engrave-checkbox');
+      const txt = card.querySelector('.product-engrave-text');
+      if (cb && txt) {
+        cb.addEventListener('change', () => {
+          txt.style.display = cb.checked ? 'block' : 'none';
+        });
+      }
+    });
+
+    // Intercept Add to Cart clicks so we can attach per-item engraving as a separate line
+    grid.addEventListener('click', async (e) => {
+      const btn = e.target.closest('.snipcart-add-item');
+      if (!btn) return;
+      e.preventDefault();
+
+      // Find product card
+      const card = btn.closest('.product-card');
+      if (!card) return;
+
+      const engraveChecked = card.querySelector('.product-engrave-checkbox')?.checked;
+      const engraveText = card.querySelector('.product-engrave-text')?.value || '';
+
+      const itemId = btn.dataset.itemId || btn.getAttribute('data-item-id');
+      const name = btn.dataset.itemName || btn.getAttribute('data-item-name');
+      const basePrice = parseFloat(btn.dataset.itemPrice || btn.getAttribute('data-item-price')) || 0;
+      const image = btn.dataset.itemImage || btn.getAttribute('data-item-image') || '';
+      const description = btn.dataset.itemDescription || btn.getAttribute('data-item-description') || '';
+      const url = btn.dataset.itemUrl || btn.getAttribute('data-item-url') || window.location.href;
+
+      try {
+        // Add the product as a cart line (use unique id so different configs aren't merged)
+        await Snipcart.api.items.add({
+          id: `${itemId}-${Date.now()}`,
+          name,
+          price: basePrice,
+          url,
+          quantity: 1,
+          description
+        });
+
+        // If engraving selected, add a separate engraving line item at $20
+        if (engraveChecked) {
+          const engravingId = `engraving-${itemId}-${Date.now()}`;
+          const engravingName = `Engraving (for ${name})`;
+          const engravingDesc = engraveText ? `Engraving text: ${engraveText}` : 'Engraving requested';
+          await Snipcart.api.items.add({
+            id: engravingId,
+            name: engravingName,
+            price: 20.00,
+            url,
+            quantity: 1,
+            description: engravingDesc
+          });
+        }
+
+        // Open the cart/modal
+        Snipcart.api.modal.open();
+
+      } catch (err) {
+        console.warn('Failed to add product or engraving to cart', err);
+      }
+    });
+
   } catch (err) {
     console.error('Failed to load products.json', err);
     grid.innerHTML = '<p style="color:#888">Products are being updated — check back soon.</p>';
@@ -378,75 +457,3 @@ async function renderGallery() {
   }
 }
 
-
-// ── Snipcart checkout helpers: add/remove engraving fee and show pickup helper ──
-// Adds an order-level "Engraving" fee when the engraving checkbox is selected
-// and shows a helper note next to Local Pickup. Assumes the Snipcart fields were
-// added to the snipcart container in index.html.
-
-document.addEventListener('snipcart.ready', () => {
-  const attachHandlers = () => {
-    // Engraving checkbox (order-level)
-    const engravingLabel = Array.from(document.querySelectorAll('label'))
-      .find(l => /Engraving \(\+\$20\)/i.test(l.textContent || '') || /Add custom engraving/i.test(l.textContent || ''));
-
-    if (engravingLabel) {
-      const checkbox = engravingLabel.querySelector('input[type="checkbox"]');
-      if (checkbox && !checkbox._engravingHandlerAttached) {
-        checkbox._engravingHandlerAttached = true;
-        checkbox.addEventListener('change', async () => {
-          try {
-            // Get current cart to avoid adding duplicates
-            const cart = await Snipcart.api.cart.retrieve();
-            const hasEngraving = (cart.items || []).some(i => i.id === 'engraving-fee');
-
-            if (checkbox.checked) {
-              if (!hasEngraving) {
-                await Snipcart.api.items.add({
-                  id: 'engraving-fee',
-                  name: 'Engraving',
-                  price: 20.00,
-                  url: window.location.href,
-                  quantity: 1
-                });
-                console.log('Engraving fee added');
-              }
-            } else {
-              // remove engraving-fee items if present
-              const engravingItems = (cart.items || []).filter(i => i.id === 'engraving-fee');
-              for (const it of engravingItems) {
-                const removeId = it.rowId || it.uniqueId || it.id;
-                try { await Snipcart.api.items.remove(removeId); } catch (e) { console.warn('Failed to remove engraving item', e); }
-              }
-              console.log('Engraving fee removed');
-            }
-          } catch (err) {
-            console.warn('Error toggling engraving fee', err);
-          }
-        });
-      }
-    }
-
-    // Local Pickup helper note
-    const pickupLabel = Array.from(document.querySelectorAll('label'))
-      .find(l => /Local Pickup/i.test(l.textContent || ''));
-    if (pickupLabel && !document.getElementById('localPickupHelper')) {
-      const helper = document.createElement('div');
-      helper.id = 'localPickupHelper';
-      helper.style.marginTop = '8px';
-      helper.style.fontSize = '13px';
-      helper.style.color = '#444';
-      helper.textContent = 'Note: selecting Local Pickup will indicate pickup to the shop. To waive shipping automatically, configure a Snipcart shipping rule that uses this custom field.';
-      pickupLabel.parentElement.appendChild(helper);
-    }
-  };
-
-  // Retry a few times while Snipcart renders the checkout DOM
-  let tries = 0;
-  const waitAndAttach = () => {
-    tries += 1;
-    attachHandlers();
-    if (tries < 8) setTimeout(waitAndAttach, 400);
-  };
-  waitAndAttach();
-});
