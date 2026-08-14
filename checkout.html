@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>TreeHaus — Snipcart Checkout Template</title>
+    <meta name="robots" content="noindex" />
+  </head>
+  <body>
+
+    <!--
+      Custom Snipcart v3 checkout template.
+      This template exposes two custom checkout fields:
+        - Phone Number (required)
+        - Local Pickup (checkbox)
+
+      After this file is deployed to https://treehauswoodworking.com/checkout.html,
+      set that URL in your Snipcart dashboard under Settings → Customization → Checkout template path.
+    -->
+
+    <snipcart-checkout>
+
+      <!-- Keep the default checkout layout in place (Snipcart will render its UI).
+           We only provide additional custom fields inside snipcart-custom-fields. -->
+
+      <snipcart-custom-fields>
+        <!-- Phone number (required) -->
+        <snipcart-field
+          name="phone"
+          type="tel"
+          label="Phone Number"
+          placeholder="Enter your phone number"
+          required="true">
+        </snipcart-field>
+
+        <!-- Local pickup checkbox -->
+        <snipcart-field
+          name="local_pickup"
+          type="checkbox"
+          label="I will pick up my order locally (no shipping required)">
+        </snipcart-field>
+      </snipcart-custom-fields>
+
+    </snipcart-checkout>
+
+  </body>
+</html>
