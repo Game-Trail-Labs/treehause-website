@@ -1,0 +1,5 @@
+Trigger Netlify rebuild
+
+This file was created to trigger a Netlify rebuild/deploy. Remove it if you don't want it in the repo.
+
+Timestamp: 2026-08-14T16:12:00Z
